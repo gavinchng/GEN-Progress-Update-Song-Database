@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)file:///Users/gavinchng/Downloads/Song_Database_Progress.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEN Progress Update · Song Database</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --text: #f1f5f9;
+      --muted: #64748b;
+      --indigo: #818cf8;
+      --indigo-dim: #a5b4fc;
+      --teal: #5eead4;
+      --amber: #fcd34d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #020617;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    /* ========== CONFIG PANEL ========== */
+    .config-panel {
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      padding: 20px 28px;
+      font-size: 13px;
+    }
+    .config-panel h2 {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: #64748b;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .config-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px 20px;
+    }
+    .config-group label {
+      display: block;
+      color: #64748b;
+      font-size: 11px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .config-group input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      background: #1e293b;
+      color: #f1f5f9;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .config-group input:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+    .config-actions {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 8px 18px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-primary { background: #6366f1; color: white; }
+    .btn-primary:hover { background: #4f46e5; }
+    .btn-secondary { background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+    .hint { color: #64748b; font-size: 12px; }
+
+    /* ========== SLIDES ========== */
+    .slides {
+      max-width: 1080px;
+      margin: 28px auto 60px;
+      padding: 0 16px;
+    }
+
+    .slide {
+      background: linear-gradient(160deg, #111827 0%, #0f172a 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      min-height: 540px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-body {
+      flex: 1;
+      padding: 32px 40px 24px;
+    }
+
+    .slide-footer {
+      background: rgba(0,0,0,0.3);
+      color: #64748b;
+      padding: 12px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Title slide */
+    .slide-title {
+      background: linear-gradient(145deg, #0f172a, #1e1b4b);
+      color: white;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 56px;
+      position: relative;
+    }
+    .slide-title::after {
+      content: "";
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.22) 0%, transparent 70%);
+      top: -80px; right: -60px;
+    }
+    .slide-title .eyebrow {
+      color: #a5b4fc;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .slide-title h1 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .slide-title .accent-line {
+      width: 60px; height: 3px;
+      background: #818cf8;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    /* Section */
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 22px;
+      backdrop-filter: blur(12px);
+    }
+    .card .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      color: #a5b4fc;
+    }
+    .card.teal .label { color: #5eead4; }
+
+    /* Catalogue size – Version B */
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 8px;
+    }
+    .metric-block .lbl {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+    .metric-block .num {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .metric-block .num.prev { color: #64748b; }
+    .metric-block .num.curr { color: #f8fafc; font-size: 28px; }
+    .cat-bar-track {
+      height: 10px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 12px 0 8px;
+    }
+    .cat-bar-fill {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 0.4s ease;
+    }
+    .cat-bar-fill.blue {
+      background: linear-gradient(90deg, #4f46e5, #818cf8);
+    }
+    .cat-bar-fill.teal {
+      background: linear-gradient(90deg, #0f766e, #5eead4);
+    }
+    .delta-line {
+      font-size: 13px;
+      font-weight: 600;
+      color: #4ade80;
+    }
+    .delta-line.flat { color: #94a3b8; }
+    .card .date {
+      font-size: 11px;
+      color: #475569;
+      margin-top: 12px;
+    }
+
+    /* Import progress – Version B per-language mini timeline */
+    .progress-block {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+    .progress-block .header {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .progress-block .lang {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      min-width: 70px;
+      color: #a5b4fc;
+    }
+    .progress-block .lang.teal { color: #5eead4; }
+    .progress-block .stats { font-size: 13px; color: #94a3b8; }
+    .progress-block .stats strong { color: #f1f5f9; }
+
+    .mini-timeline {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 0 4px 14px;
+    }
+    .mini-timeline::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 4%;
+      right: 4%;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+    }
+    .mini-phase {
+      text-align: center;
+      width: 72px;
+      position: relative;
+      z-index: 1;
+    }
+    .mini-phase .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+      background: #1e293b;
+      border: 2px solid #475569;
+    }
+    .mini-phase.done .dot {
+      background: #6366f1;
+      border-color: #818cf8;
+    }
+    .mini-phase.done.teal .dot {
+      background: #0d9488;
+      border-color: #5eead4;
+    }
+    .mini-phase.current .dot {
+      box-shadow: 0 0 10px rgba(129,140,248,0.6);
+    }
+    .mini-phase.current.teal .dot {
+      box-shadow: 0 0 10px rgba(94,234,212,0.5);
+    }
+    .mini-phase .lbl {
+      font-size: 10px;
+      color: #64748b;
+      line-height: 1.25;
+    }
+    .mini-phase.current .lbl {
+      color: #a5b4fc;
+      font-weight: 600;
+    }
+    .mini-phase.current.teal .lbl {
+      color: #5eead4;
+    }
+
+    .bar-track {
+      height: 8px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+    .bar-fill.blue {
+      background: linear-gradient(90deg, #4f46e5, #818cf8);
+    }
+    .bar-fill.teal {
+      background: linear-gradient(90deg, #0f766e, #5eead4);
+    }
+    .status-line { font-size: 11px; color: #64748b; }
+
+    /* Competitor comparison bars */
+    .comp-section {
+      margin-bottom: 28px;
+    }
+    .comp-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+    .comp-row {
+      display: grid;
+      grid-template-columns: 110px 1fr 80px;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .comp-row .name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    .comp-row .name.ls { color: #a5b4fc; }
+    .comp-row .name.mah { color: #fcd34d; }
+    .comp-row .name.man { color: #5eead4; }
+    .comp-bar-track {
+      height: 18px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .comp-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.5s ease;
+      min-width: 4px;
+    }
+    .comp-bar-fill.ls { background: linear-gradient(90deg, #4f46e5, #818cf8); }
+    .comp-bar-fill.mah { background: linear-gradient(90deg, #d97706, #fcd34d); }
+    .comp-bar-fill.man { background: linear-gradient(90deg, #0f766e, #5eead4); }
+    .comp-row .val {
+      font-size: 14px;
+      font-weight: 700;
+      text-align: right;
+      color: #f1f5f9;
+    }
+
+    .comp-total-box {
+      margin-top: 8px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+    }
+    .comp-total-box .comp-section-title {
+      margin-bottom: 12px;
+    }
+
+    @media print {
+      .config-panel { display: none; }
+      .slides { margin: 0; max-width: none; padding: 0; }
+      .slide {
+        box-shadow: none;
+        border-radius: 0;
+        page-break-after: always;
+        min-height: 100vh;
+        border: none;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .cards-2 { grid-template-columns: 1fr; }
+      .slide-title h1 { font-size: 28px; }
+      .comp-row { grid-template-columns: 90px 1fr 70px; }
+      .mini-phase { width: 56px; }
+      .mini-phase .lbl { font-size: 9px; }
+    }
+
+    /* ========== PRESENTER MODE ========== */
+    body.presenting .config-panel { display: none !important; }
+    body.presenting {
+      background: #020617;
+      overflow: hidden;
+    }
+    body.presenting .slides {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body.presenting .slide {
+      display: none;
+      margin: 0;
+      width: min(100vw, 1600px);
+      height: min(100vh, 900px);
+      min-height: 0;
+      border-radius: 0;
+      border: none;
+    }
+    body.presenting .slide.active-slide {
+      display: flex;
+    }
+    body.presenting .slide-body {
+      padding: 36px 48px 28px;
+    }
+    body.presenting .slide-title {
+      min-height: 100%;
+      width: 100%;
+    }
+
+    .presenter-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(15, 23, 42, 0.92);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 10px 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      backdrop-filter: blur(12px);
+    }
+    body.presenting .presenter-bar { display: flex; }
+    body.presenting .slides { padding-bottom: 52px; }
+
+    .presenter-bar .nav-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .presenter-bar .nav-btn:hover { border-color: #818cf8; color: #a5b4fc; }
+    .presenter-bar .nav-btn:disabled { opacity: 0.35; cursor: default; }
+    .presenter-bar .center {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+    .presenter-bar .slide-indicator {
+      font-weight: 600;
+      color: #e2e8f0;
+      min-width: 64px;
+      text-align: center;
+    }
+    .presenter-bar .hint-keys {
+      font-size: 11px;
+      color: #64748b;
+    }
+    .btn-present {
+      background: #0f766e;
+      color: white;
+    }
+    .btn-present:hover { background: #0d9488; }
+
+    @media print {
+      .presenter-bar { display: none !important; }
+      body.presenting .slide { display: flex !important; height: auto; page-break-after: always; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===================== CONFIG PANEL ===================== -->
+  <div class="config-panel">
+    <h2>✏️ Edit numbers · then click Update</h2>
+    <div class="config-grid">
+      <div class="config-group">
+        <label>LS English · Previous</label>
+        <input id="lsEngPrev" type="text" value="15,587">
+      </div>
+      <div class="config-group">
+        <label>LS English · Current</label>
+        <input id="lsEng" type="text" value="25,104">
+      </div>
+      <div class="config-group">
+        <label>LS Malay · Previous</label>
+        <input id="lsMalPrev" type="text" value="15,941">
+      </div>
+      <div class="config-group">
+        <label>LS Malay · Current</label>
+        <input id="lsMal" type="text" value="17,411">
+      </div>
+      <div class="config-group">
+        <label>As of date</label>
+        <input id="asOf" type="text" value="10 Nov 2026">
+      </div>
+
+      <div class="config-group">
+        <label>English planned</label>
+        <input id="engPlanned" type="text" value="14,392">
+      </div>
+      <div class="config-group">
+        <label>English imported</label>
+        <input id="engImported" type="text" value="0">
+      </div>
+      <div class="config-group">
+        <label>English status</label>
+        <input id="engStatus" type="text" value="On track">
+      </div>
+      <div class="config-group">
+        <label>English next checkpoint</label>
+        <input id="engNext" type="text" value="18 Nov">
+      </div>
+
+      <div class="config-group">
+        <label>Malay planned</label>
+        <input id="malPlanned" type="text" value="32,676">
+      </div>
+      <div class="config-group">
+        <label>Malay imported</label>
+        <input id="malImported" type="text" value="0">
+      </div>
+      <div class="config-group">
+        <label>Malay status</label>
+        <input id="malStatus" type="text" value="Slightly behind">
+      </div>
+      <div class="config-group">
+        <label>Malay next checkpoint</label>
+        <input id="malNext" type="text" value="18 Nov">
+      </div>
+
+      <div class="config-group">
+        <label>English pipeline stage</label>
+        <select id="engStage" style="width:100%;padding:8px 10px;border:1px solid #1e293b;border-radius:8px;background:#1e293b;color:#f1f5f9;font-size:14px;font-family:inherit;">
+          <option value="0">Decrypt</option>
+          <option value="1">Demix</option>
+          <option value="2" selected>Song List</option>
+          <option value="3">Cloud upload</option>
+          <option value="4">Go Live</option>
+        </select>
+      </div>
+      <div class="config-group">
+        <label>Malay pipeline stage</label>
+        <select id="malStage" style="width:100%;padding:8px 10px;border:1px solid #1e293b;border-radius:8px;background:#1e293b;color:#f1f5f9;font-size:14px;font-family:inherit;">
+          <option value="0">Decrypt</option>
+          <option value="1">Demix</option>
+          <option value="2" selected>Song List</option>
+          <option value="3">Cloud upload</option>
+          <option value="4">Go Live</option>
+        </select>
+      </div>
+
+      <div class="config-group">
+        <label>Maharaja English</label>
+        <input id="mahEng" type="text" value="0">
+      </div>
+      <div class="config-group">
+        <label>Maharaja Malay</label>
+        <input id="mahMal" type="text" value="35,286">
+      </div>
+      <div class="config-group">
+        <label>Manekineko English</label>
+        <input id="manEng" type="text" value="40,747">
+      </div>
+      <div class="config-group">
+        <label>Manekineko Malay</label>
+        <input id="manMal" type="text" value="56,943">
+      </div>
+    </div>
+
+    <div class="config-actions">
+      <button class="btn btn-primary" onclick="updateAll()">Update slides</button>
+      <button class="btn btn-present" onclick="enterPresent()">▶ Present</button>
+      <button class="btn btn-secondary" onclick="window.print()">Print / Save PDF</button>
+      <span class="hint">Edit numbers → Update → Present. Host this single HTML on any subdomain.</span>
+    </div>
+  </div>
+
+  <!-- ===================== SLIDES ===================== -->
+  <div class="slides">
+
+    <!-- SLIDE 1: Title -->
+    <div class="slide">
+      <div class="slide-title">
+        <div class="eyebrow">SONG DATABASE</div>
+        <h1>GEN Progress Update</h1>
+        <div class="accent-line"></div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Planned Import Progress (Version B + technical pipeline) -->
+    <div class="slide">
+      <div class="slide-body">
+        <div class="section-title">1. Total Catalogue Size</div>
+        <div class="section-sub">Previous → Current (English + Malay only)</div>
+
+        <div class="cards-2">
+          <div class="card">
+            <div class="label">ENGLISH</div>
+            <div class="metric-row">
+              <div class="metric-block">
+                <div class="lbl">Previous</div>
+                <div class="num prev" id="v-lsEngPrev">15,587</div>
+              </div>
+              <div class="metric-block" style="text-align:right">
+                <div class="lbl">Current</div>
+                <div class="num curr" id="v-lsEng">25,104</div>
+              </div>
+            </div>
+            <div class="cat-bar-track">
+              <div class="cat-bar-fill blue" id="v-engCatBar" style="width: 100%"></div>
+            </div>
+            <div class="delta-line" id="v-engDelta">↑ +9,517 songs &nbsp;·&nbsp; +61.1%</div>
+            <div class="date">As of <span id="v-asOf1">10 Nov 2026</span></div>
+          </div>
+          <div class="card teal">
+            <div class="label">MALAY</div>
+            <div class="metric-row">
+              <div class="metric-block">
+                <div class="lbl">Previous</div>
+                <div class="num prev" id="v-lsMalPrev">15,941</div>
+              </div>
+              <div class="metric-block" style="text-align:right">
+                <div class="lbl">Current</div>
+                <div class="num curr" id="v-lsMal">17,411</div>
+              </div>
+            </div>
+            <div class="cat-bar-track">
+              <div class="cat-bar-fill teal" id="v-malCatBar" style="width: 100%"></div>
+            </div>
+            <div class="delta-line" id="v-malDelta">↑ +1,470 songs &nbsp;·&nbsp; +9.2%</div>
+            <div class="date">As of <span id="v-asOf2">10 Nov 2026</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Song Database · Gen by Loud Speaker  |  Progress Meeting  |  Nov 2026</span>
+        <span>2 / 4</span>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-body">
+        <div class="section-title">2. Competitor Catalogue Comparison</div>
+        <div class="section-sub">English + Malay only — bar length relative to largest catalogue</div>
+
+        <div class="comp-section">
+          <div class="comp-section-title">English</div>
+          <div class="comp-row">
+            <div class="name ls">Loud Speaker</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill ls" id="bar-eng-ls" style="width: 62%;"></div>
+            </div>
+            <div class="val" id="v-lsEng2">25,104</div>
+          </div>
+          <div class="comp-row">
+            <div class="name mah">Maharaja</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill mah" id="bar-eng-mah" style="width: 2%;"></div>
+            </div>
+            <div class="val" id="v-mahEng">0</div>
+          </div>
+          <div class="comp-row">
+            <div class="name man">Manekineko</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill man" id="bar-eng-man" style="width: 100%;"></div>
+            </div>
+            <div class="val" id="v-manEng">40,747</div>
+          </div>
+        </div>
+
+        <div class="comp-section">
+          <div class="comp-section-title">Malay</div>
+          <div class="comp-row">
+            <div class="name ls">Loud Speaker</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill ls" id="bar-mal-ls" style="width: 31%;"></div>
+            </div>
+            <div class="val" id="v-lsMal2">17,411</div>
+          </div>
+          <div class="comp-row">
+            <div class="name mah">Maharaja</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill mah" id="bar-mal-mah" style="width: 62%;"></div>
+            </div>
+            <div class="val" id="v-mahMal">35,286</div>
+          </div>
+          <div class="comp-row">
+            <div class="name man">Manekineko</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill man" id="bar-mal-man" style="width: 100%;"></div>
+            </div>
+            <div class="val" id="v-manMal">56,943</div>
+          </div>
+        </div>
+
+        <div class="comp-total-box">
+          <div class="comp-section-title">English + Malay combined</div>
+          <div class="comp-row">
+            <div class="name ls">Loud Speaker</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill ls" id="bar-tot-ls" style="width: 44%;"></div>
+            </div>
+            <div class="val" id="v-lsTotal">42,515</div>
+          </div>
+          <div class="comp-row">
+            <div class="name mah">Maharaja</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill mah" id="bar-tot-mah" style="width: 36%;"></div>
+            </div>
+            <div class="val" id="v-mahTotal">35,286</div>
+          </div>
+          <div class="comp-row">
+            <div class="name man">Manekineko</div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill man" id="bar-tot-man" style="width: 100%;"></div>
+            </div>
+            <div class="val" id="v-manTotal">97,690</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Song Database · Gen by Loud Speaker  |  Progress Meeting  |  Nov 2026</span>
+        <span>3 / 4</span>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-body">
+        <div class="section-title">3. Planned Import Progress</div>
+        <div class="section-sub">Pipeline: Decrypt → Demix → Song List → Cloud upload → Go Live</div>
+
+        <div class="progress-block">
+          <div class="header">
+            <span class="lang">ENGLISH</span>
+            <span class="stats">
+              <span id="v-engPlanned">14,392</span> planned
+              &nbsp;·&nbsp;
+              <span id="v-engImported">0</span> imported
+              &nbsp;·&nbsp;
+              <strong id="v-engPct">0%</strong>
+            </span>
+          </div>
+                    <div class="mini-timeline" id="engTimeline">
+            <div class="mini-phase" data-step="0"><div class="dot"></div><div class="lbl">Decrypt</div></div>
+            <div class="mini-phase" data-step="1"><div class="dot"></div><div class="lbl">Demix</div></div>
+            <div class="mini-phase" data-step="2"><div class="dot"></div><div class="lbl">Song List</div></div>
+            <div class="mini-phase" data-step="3"><div class="dot"></div><div class="lbl">Cloud</div></div>
+            <div class="mini-phase" data-step="4"><div class="dot"></div><div class="lbl">Go Live</div></div>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill blue" id="v-engBar" style="width: 0%;"></div>
+          </div>
+          <div class="status-line">
+            Status: <span id="v-engStatus">On track</span>
+            &nbsp;·&nbsp;
+            Next checkpoint: <span id="v-engNext">18 Nov</span>
+          </div>
+        </div>
+
+        <div class="progress-block">
+          <div class="header">
+            <span class="lang teal">MALAY</span>
+            <span class="stats">
+              <span id="v-malPlanned">32,676</span> planned
+              &nbsp;·&nbsp;
+              <span id="v-malImported">0</span> imported
+              &nbsp;·&nbsp;
+              <strong id="v-malPct">0%</strong>
+            </span>
+          </div>
+                    <div class="mini-timeline" id="malTimeline">
+            <div class="mini-phase" data-step="0"><div class="dot"></div><div class="lbl">Decrypt</div></div>
+            <div class="mini-phase" data-step="1"><div class="dot"></div><div class="lbl">Demix</div></div>
+            <div class="mini-phase" data-step="2"><div class="dot"></div><div class="lbl">Song List</div></div>
+            <div class="mini-phase" data-step="3"><div class="dot"></div><div class="lbl">Cloud</div></div>
+            <div class="mini-phase" data-step="4"><div class="dot"></div><div class="lbl">Go Live</div></div>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill teal" id="v-malBar" style="width: 0%;"></div>
+          </div>
+          <div class="status-line">
+            Status: <span id="v-malStatus">Slightly behind</span>
+            &nbsp;·&nbsp;
+            Next checkpoint: <span id="v-malNext">18 Nov</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Song Database · Gen by Loud Speaker  |  Progress Meeting  |  Nov 2026</span>
+        <span>4 / 4</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function parseNum(str) {
+      return parseInt(String(str).replace(/,/g, ""), 10) || 0;
+    }
+    function formatNum(n) {
+      return n.toLocaleString("en-US");
+    }
+    function pct(a, b) {
+      if (!b) return 0;
+      return Math.round((a / b) * 100);
+    }
+    function barPct(val, max) {
+      if (!max) return 0;
+      return Math.max(2, Math.round((val / max) * 100));
+    }
+    function deltaText(curr, prev) {
+      const d = curr - prev;
+      if (d === 0) return { text: "No change", up: false };
+      const p = prev ? ((d / prev) * 100).toFixed(1) : "0.0";
+      const sign = d > 0 ? "↑ +" : "↓ ";
+      return {
+        text: sign + formatNum(Math.abs(d)) + " songs &nbsp;·&nbsp; " + (d > 0 ? "+" : "") + p + "%",
+        up: d > 0
+      };
+    }
+
+    function updateAll() {
+      const lsEngPrev = parseNum(document.getElementById("lsEngPrev").value);
+      const lsEng = parseNum(document.getElementById("lsEng").value);
+      const lsMalPrev = parseNum(document.getElementById("lsMalPrev").value);
+      const lsMal = parseNum(document.getElementById("lsMal").value);
+      const asOf = document.getElementById("asOf").value;
+
+      document.getElementById("v-lsEngPrev").textContent = formatNum(lsEngPrev);
+      document.getElementById("v-lsEng").textContent = formatNum(lsEng);
+      document.getElementById("v-lsMalPrev").textContent = formatNum(lsMalPrev);
+      document.getElementById("v-lsMal").textContent = formatNum(lsMal);
+      document.getElementById("v-asOf1").textContent = asOf;
+      document.getElementById("v-asOf2").textContent = asOf;
+
+      const engMax = Math.max(lsEngPrev, lsEng, 1);
+      const malMax = Math.max(lsMalPrev, lsMal, 1);
+      document.getElementById("v-engCatBar").style.width = barPct(lsEng, engMax) + "%";
+      document.getElementById("v-malCatBar").style.width = barPct(lsMal, malMax) + "%";
+
+      const engD = deltaText(lsEng, lsEngPrev);
+      const malD = deltaText(lsMal, lsMalPrev);
+      const engDeltaEl = document.getElementById("v-engDelta");
+      const malDeltaEl = document.getElementById("v-malDelta");
+      engDeltaEl.innerHTML = engD.text;
+      malDeltaEl.innerHTML = malD.text;
+      engDeltaEl.className = "delta-line" + (engD.up ? "" : " flat");
+      malDeltaEl.className = "delta-line" + (malD.up ? "" : " flat");
+
+      // Import: planned first, then imported
+      const engPlan = parseNum(document.getElementById("engPlanned").value);
+      const engImp = parseNum(document.getElementById("engImported").value);
+      const engP = pct(engImp, engPlan);
+      document.getElementById("v-engPlanned").textContent = formatNum(engPlan);
+      document.getElementById("v-engImported").textContent = formatNum(engImp);
+      document.getElementById("v-engPct").textContent = engP + "%";
+      document.getElementById("v-engBar").style.width = engP + "%";
+      document.getElementById("v-engStatus").textContent = document.getElementById("engStatus").value;
+      document.getElementById("v-engNext").textContent = document.getElementById("engNext").value;
+
+      const malPlan = parseNum(document.getElementById("malPlanned").value);
+      const malImp = parseNum(document.getElementById("malImported").value);
+      const malP = pct(malImp, malPlan);
+      document.getElementById("v-malPlanned").textContent = formatNum(malPlan);
+      document.getElementById("v-malImported").textContent = formatNum(malImp);
+      document.getElementById("v-malPct").textContent = malP + "%";
+      document.getElementById("v-malBar").style.width = malP + "%";
+      document.getElementById("v-malStatus").textContent = document.getElementById("malStatus").value;
+      document.getElementById("v-malNext").textContent = document.getElementById("malNext").value;
+
+      // Competitors
+      const mahEng = parseNum(document.getElementById("mahEng").value);
+      const mahMal = parseNum(document.getElementById("mahMal").value);
+      const manEng = parseNum(document.getElementById("manEng").value);
+      const manMal = parseNum(document.getElementById("manMal").value);
+
+      document.getElementById("v-lsEng2").textContent = formatNum(lsEng);
+      document.getElementById("v-lsMal2").textContent = formatNum(lsMal);
+      document.getElementById("v-lsTotal").textContent = formatNum(lsEng + lsMal);
+      document.getElementById("v-mahEng").textContent = formatNum(mahEng);
+      document.getElementById("v-mahMal").textContent = formatNum(mahMal);
+      document.getElementById("v-mahTotal").textContent = formatNum(mahEng + mahMal);
+      document.getElementById("v-manEng").textContent = formatNum(manEng);
+      document.getElementById("v-manMal").textContent = formatNum(manMal);
+      document.getElementById("v-manTotal").textContent = formatNum(manEng + manMal);
+
+      const maxEng = Math.max(lsEng, mahEng, manEng);
+      const maxMal = Math.max(lsMal, mahMal, manMal);
+      const maxTot = Math.max(lsEng + lsMal, mahEng + mahMal, manEng + manMal);
+
+      document.getElementById("bar-eng-ls").style.width = barPct(lsEng, maxEng) + "%";
+      document.getElementById("bar-eng-mah").style.width = barPct(mahEng, maxEng) + "%";
+      document.getElementById("bar-eng-man").style.width = barPct(manEng, maxEng) + "%";
+
+      document.getElementById("bar-mal-ls").style.width = barPct(lsMal, maxMal) + "%";
+      document.getElementById("bar-mal-mah").style.width = barPct(mahMal, maxMal) + "%";
+      document.getElementById("bar-mal-man").style.width = barPct(manMal, maxMal) + "%";
+
+      document.getElementById("bar-tot-ls").style.width = barPct(lsEng + lsMal, maxTot) + "%";
+      document.getElementById("bar-tot-mah").style.width = barPct(mahEng + mahMal, maxTot) + "%";
+      document.getElementById("bar-tot-man").style.width = barPct(manEng + manMal, maxTot) + "%";
+
+      // Pipeline stages
+      applyStage("engTimeline", parseInt(document.getElementById("engStage").value, 10), false);
+      applyStage("malTimeline", parseInt(document.getElementById("malStage").value, 10), true);
+    }
+
+    function applyStage(timelineId, currentStep, isTeal) {
+      const phases = document.querySelectorAll("#" + timelineId + " .mini-phase");
+      phases.forEach((el) => {
+        const step = parseInt(el.getAttribute("data-step"), 10);
+        el.classList.remove("done", "current", "teal");
+        if (step < currentStep) {
+          el.classList.add("done");
+          if (isTeal) el.classList.add("teal");
+        } else if (step === currentStep) {
+          el.classList.add("done", "current");
+          if (isTeal) el.classList.add("teal");
+        }
+      });
+    }
+
+
+    // ===== Presenter mode =====
+    let currentSlide = 0;
+    let slideEls = [];
+
+    function getSlides() {
+      return Array.from(document.querySelectorAll(".slides > .slide"));
+    }
+
+    function enterPresent() {
+      updateAll();
+      saveConfig();
+      slideEls = getSlides();
+      currentSlide = 0;
+      document.body.classList.add("presenting");
+      showSlide(0);
+      // try fullscreen
+      const el = document.documentElement;
+      if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+    }
+
+    function exitPresent() {
+      document.body.classList.remove("presenting");
+      slideEls.forEach(s => s.classList.remove("active-slide"));
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function showSlide(i) {
+      slideEls = getSlides();
+      if (!slideEls.length) return;
+      currentSlide = Math.max(0, Math.min(i, slideEls.length - 1));
+      slideEls.forEach((s, idx) => {
+        s.classList.toggle("active-slide", idx === currentSlide);
+      });
+      const ind = document.getElementById("slideIndicator");
+      if (ind) ind.textContent = (currentSlide + 1) + " / " + slideEls.length;
+      const prev = document.getElementById("btnPrev");
+      const next = document.getElementById("btnNext");
+      if (prev) prev.disabled = currentSlide === 0;
+      if (next) next.disabled = currentSlide === slideEls.length - 1;
+    }
+
+    function nextSlide() {
+      if (currentSlide < getSlides().length - 1) showSlide(currentSlide + 1);
+    }
+    function prevSlide() {
+      if (currentSlide > 0) showSlide(currentSlide - 1);
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (!document.body.classList.contains("presenting")) return;
+      if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        exitPresent();
+      } else if (e.key === "f" || e.key === "F") {
+        e.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        showSlide(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        showSlide(getSlides().length - 1);
+      }
+    });
+
+    // Click on slide advances (except interactive controls)
+    document.addEventListener("click", (e) => {
+      if (!document.body.classList.contains("presenting")) return;
+      if (e.target.closest(".presenter-bar")) return;
+      if (e.target.closest("button, select, input, a")) return;
+      nextSlide();
+    });
+
+    // Persist config in localStorage for hosted use
+    const CONFIG_KEYS = [
+      "lsEngPrev","lsEng","lsMalPrev","lsMal","asOf",
+      "engPlanned","engImported","engStatus","engNext",
+      "malPlanned","malImported","malStatus","malNext",
+      "mahEng","mahMal","manEng","manMal"
+    ];
+
+    function saveConfig() {
+      const data = {};
+      CONFIG_KEYS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) data[id] = el.value;
+      });
+      const engStage = document.getElementById("engStage");
+      const malStage = document.getElementById("malStage");
+      if (engStage) data.engStage = engStage.value;
+      if (malStage) data.malStage = malStage.value;
+      try { localStorage.setItem("genProgressConfig", JSON.stringify(data)); } catch (e) {}
+    }
+
+    function loadConfig() {
+      try {
+        const raw = localStorage.getItem("genProgressConfig");
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        CONFIG_KEYS.forEach(id => {
+          if (data[id] != null) {
+            const el = document.getElementById(id);
+            if (el) el.value = data[id];
+          }
+        });
+        if (data.engStage != null) {
+          const el = document.getElementById("engStage");
+          if (el) el.value = data.engStage;
+        }
+        if (data.malStage != null) {
+          const el = document.getElementById("malStage");
+          if (el) el.value = data.malStage;
+        }
+      } catch (e) {}
+    }
+
+    // Hook save into updateAll
+    const _origUpdateAll = updateAll;
+    updateAll = function() {
+      _origUpdateAll();
+      saveConfig();
+    };
+
+    loadConfig();
+    updateAll();
+
+  </script>
+
+
+
+  <div class="presenter-bar" id="presenterBar">
+    <button class="nav-btn" id="btnPrev" onclick="prevSlide()">← Prev</button>
+    <div class="center">
+      <span class="slide-indicator" id="slideIndicator">1 / 4</span>
+      <span class="hint-keys">← → Space · Esc to exit · F for fullscreen</span>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="nav-btn" id="btnNext" onclick="nextSlide()">Next →</button>
+      <button class="nav-btn" onclick="exitPresent()">Exit</button>
+    </div>
+  </div>
+
+</body></html>
